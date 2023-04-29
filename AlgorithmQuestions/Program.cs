@@ -4,14 +4,12 @@ namespace AlgorithmQuestions
 {
     public class Program
     {
+        
         public static void Main(string[] args) 
         {
-           Console.WriteLine(RomanToInt("III"));
         }
 
-
-        //LeetCode Top Interview Questions Solution List
-        //LeetCode first Question TwoSum
+        //leetCode Top Interview Question 1
         public int[] TwoSum(int[] nums, int target)
         {
             int x, y;
@@ -32,7 +30,48 @@ namespace AlgorithmQuestions
             return new int[0];
             
         }
+        //LeetCode Top Interview Question 2
+        public class ListNode
+        {
+            public int val;
+            public ListNode next;
+            public ListNode(int val = 0, ListNode next = null)
+            {
+                this.val = val;
+                this.next = next;
+            }
+        }
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            int carry = 0;
+            int x = 0;
+            int y = 0;
+            int total = 0;
+            ListNode outputList = new ListNode(0);
+            ListNode finalOutput = outputList;
+            ListNode firstList = l1;
+            ListNode secondList = l2;
 
+
+            while (firstList != null || secondList != null)
+            {
+                x = (firstList != null) ? firstList.val : 0;
+                y = (secondList != null) ? secondList.val : 0;
+                total = x + y + carry;
+
+                carry = total / 10;
+                outputList.next = new ListNode(total % 10);
+                outputList = outputList.next;
+
+                if (firstList != null) firstList = firstList.next;
+                if (secondList != null) secondList = secondList.next;
+            }
+            if (carry > 0)
+            {
+                outputList.next = new ListNode(carry);
+            }
+            return finalOutput.next;
+        }
 
         //LeetCode 13.Question 
         public static int RomanToInt(string s)
@@ -62,4 +101,5 @@ namespace AlgorithmQuestions
             return result;
         }
     }
+    
 }
