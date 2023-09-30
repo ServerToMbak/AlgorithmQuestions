@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Reflection;
 
 namespace AlgorithmQuestions
 {
@@ -7,6 +8,55 @@ namespace AlgorithmQuestions
         
         public static void Main(string[] args) 
         {
+            int[] arrayLsit = { 1, 23, 4,85,21,3,23,4,72,73, 56 };
+
+            ////Biggest Number
+            //Console.WriteLine(BiggestNumberİnAnArray(arrayLsit));
+            int value = SeconBiggestNumberİnAnArray(arrayLsit);
+            Console.WriteLine(value);
+        }
+        public static int BiggestNumberİnAnArray(int[] nums)
+        {
+            int bigger = 1;
+            foreach (int num in nums) 
+            {
+                
+                if(bigger<num)
+                {
+                    bigger = num;
+
+                }
+                
+            }
+            return bigger; ;
+        }
+        //buble sort
+
+
+        //second biggest number in an array
+        public static int SeconBiggestNumberİnAnArray(int[] nums)
+        {
+            int holder;
+            int index = 0;
+            for (int i=0; i<nums.Length; i++)
+            {
+               
+                for (int j = 0; j < nums.Length; j++)
+                {
+                    
+                    if (nums[index] > nums[j])
+                    {
+                        holder = nums[index];
+                        nums[index] = nums[j];
+                        nums[j] = holder;
+
+                    }                   
+                }
+                index++;
+
+            }
+
+            return nums[1];
         }
 
         //leetCode Top Interview Question 1
