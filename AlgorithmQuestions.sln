@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmQuestions", "AlgorithmQuestions\AlgorithmQuestions.csproj", "{49AC9F9E-1F9D-4698-9176-35F86452AE77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary", "Dictionary\Dictionary.csproj", "{B2EAA099-A0FD-46CD-BCF1-B1347EB11764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary", "Dictionary\Dictionary.csproj", "{B2EAA099-A0FD-46CD-BCF1-B1347EB11764}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList", "LinkedList\LinkedList.csproj", "{B6C9F4E5-48FF-4627-A1FC-60BA2750D2DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B2EAA099-A0FD-46CD-BCF1-B1347EB11764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2EAA099-A0FD-46CD-BCF1-B1347EB11764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2EAA099-A0FD-46CD-BCF1-B1347EB11764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C9F4E5-48FF-4627-A1FC-60BA2750D2DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C9F4E5-48FF-4627-A1FC-60BA2750D2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C9F4E5-48FF-4627-A1FC-60BA2750D2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C9F4E5-48FF-4627-A1FC-60BA2750D2DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
