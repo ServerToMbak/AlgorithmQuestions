@@ -12,9 +12,56 @@ namespace AlgorithmQuestions
 
             ////Biggest Number
             //Console.WriteLine(BiggestNumberİnAnArray(arrayLsit));
-            int value = SeconBiggestNumberİnAnArray(arrayLsit);
-            Console.WriteLine(value);
+            //int value = SecondBiggestNumberİnAnArray(arrayLsit);
+            var response = FindingRepatingNumbersWithHashSet(new int[]{ 2,3,2, 3,3 ,4,5,7,5,2 });
+            foreach (int i in response) 
+            {
+                Console.WriteLine(i);
+            }
+
         }
+
+
+         //0,1,2,3,2 4,5,6 -> 2 aldık tüm elemanı dolaş count > 1 ise liste'ye ekle 
+         //dizi sonlanınca yeni listeye ekle
+        public static List<int> FindingRepatingNumbers(int[] nums)
+        {
+            List<int> response = new();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int count = 0; // her yeni dizi elenmanı kontrolünde vountu 0'a eşitler
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (i != j && nums[i] == nums[j])
+                    {
+                        count++;
+                        break;
+                    }
+                }
+                if (count > 0 && !response.Contains(nums[i]))
+                    response.Add(nums[i]);
+            }
+            return response;
+
+        }
+        //its finding repeating numbers from a list with using HashSet
+        public static List<int> FindingRepatingNumbersWithHashSet(int[] nums)
+        {
+            List<int> response = new();
+            HashSet<int> set = new HashSet<int>();  
+           
+            foreach (int i in nums)
+            {
+                if(!set.Add(i) && !response.Contains(i))
+                {
+                    response.Add(i);
+                }
+            }
+
+            return response;
+        }
+
         public static int BiggestNumberİnAnArray(int[] nums)
         {
             int bigger = 1;
@@ -34,7 +81,7 @@ namespace AlgorithmQuestions
 
 
         //second biggest number in an array
-        public static int SeconBiggestNumberİnAnArray(int[] nums)
+        public static int SecondBiggestNumberİnAnArray(int[] nums)
         {
             int holder;
             int index = 0;
@@ -150,6 +197,7 @@ namespace AlgorithmQuestions
 
             return result;
         }
+
     }
     
 }
