@@ -53,56 +53,6 @@ namespace AlgorithmQuestions
             
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //  the Length of last word in a string
-        //public static int LengthOfLastWord(string s)
-        //{
-        //    int lengthOfLastWord = 0;
-        //    if (string.IsNullOrEmpty(s))
-        //        return 0;
-
-        //    int i = s.Length - 1;
-
-        //    while (s[i].Equals(' '))
-        //    {
-        //        i--;
-        //    }
-        //    while (!s[i].Equals(' '))
-        //    {
-        //        lengthOfLastWord++;
-        //        i--;
-        //    }
-
-        //    return lengthOfLastWord;
-        //}
-                
-
-
         //zaman -- namaz
         //public static bool CheckAnagram(string a, string b)
         //{
