@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace AlgorithmQuestions
@@ -14,16 +15,119 @@ namespace AlgorithmQuestions
             //Console.WriteLine(BiggestNumberİnAnArray(arrayLsit));
             //int value = SecondBiggestNumberİnAnArray(arrayLsit);
             var response = FindingRepatingNumbersWithHashSet(new int[]{ 2,3,2, 3,3 ,4,5,7,5,2 });
-            foreach (int i in response) 
-            {
-                Console.WriteLine(i);
-            }
+            //foreach (int i in response) 
+            //{
+            //    Console.WriteLine(i);
+            //}
+            string s = "bu bir algoritma sorusu çözüm videosudur ";
+            Console.WriteLine(LengthOfLastWord(s));
 
         }
 
 
-         //0,1,2,3,2 4,5,6 -> 2 aldık tüm elemanı dolaş count > 1 ise liste'ye ekle 
-         //dizi sonlanınca yeni listeye ekle
+
+        //58. Length of Last Word
+
+        public static int LengthOfLastWord(string s){
+
+            // " bu bir leet code algoritma sorusu çözüm videosudur   "
+            int result = 0;
+
+            if(string.IsNullOrEmpty(s))
+            {
+                return  0;
+            }
+            int index = s.Length - 1;
+            while (s[index] == ' ')
+            {
+                index--;
+            }
+
+            while (s[index] != ' ')
+            {
+                result++;
+                index--;
+            }
+
+            return result;
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //  the Length of last word in a string
+        //public static int LengthOfLastWord(string s)
+        //{
+        //    int lengthOfLastWord = 0;
+        //    if (string.IsNullOrEmpty(s))
+        //        return 0;
+
+        //    int i = s.Length - 1;
+
+        //    while (s[i].Equals(' '))
+        //    {
+        //        i--;
+        //    }
+        //    while (!s[i].Equals(' '))
+        //    {
+        //        lengthOfLastWord++;
+        //        i--;
+        //    }
+
+        //    return lengthOfLastWord;
+        //}
+                
+
+
+        //zaman -- namaz
+        //public static bool CheckAnagram(string a, string b)
+        //{
+        //    Dictionary<int,int> MapIndex =new();
+        //    if(a.Length != b.Length)
+        //        return false;
+
+        //    for(int i = 0;i<a.Length; i++ )
+        //    {
+        //        for(int j = 0; j<a.Length; j++)
+        //        {
+        //            if (a[i] == a[j])
+        //            {
+
+        //            }
+        //        }
+        //    }
+
+        //}
+
+
+
+
+        //0,1,2,3,2 4,5,6 -> 2 aldık tüm elemanı dolaş count > 1 ise liste'ye ekle 
+        //dizi sonlanınca yeni listeye ekle
         public static List<int> FindingRepatingNumbers(int[] nums)
         {
             List<int> response = new();
@@ -78,7 +182,6 @@ namespace AlgorithmQuestions
             return bigger; ;
         }
         //buble sort
-
 
         //second biggest number in an array
         public static int SecondBiggestNumberİnAnArray(int[] nums)
