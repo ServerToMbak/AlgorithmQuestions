@@ -19,10 +19,48 @@ namespace AlgorithmQuestions
             //{
             //    Console.WriteLine(i);
             //}
-            string s = "bu bir algoritma sorusu çözüm videosudur ";
-            Console.WriteLine(LengthOfLastWord(s));
+            //string s = "bu bir algoritma sorusu çözüm videosudur ";
+            //Console.WriteLine(LengthOfLastWord(s));
+            string[] s= { "ab", "a"};
+            Console.WriteLine(LongestCommonPrefix(s));
 
         }
+
+
+
+
+        //14. Longest Common Prefix
+        public static string LongestCommonPrefix(string[] list)
+        {
+            // "flaower", "flaow", "flight", "faight"
+            string result = list[0];
+            string current;
+
+            for (int i = 1; i < list.Length; i++)
+            {
+                current = list[i];
+                if (current == "" && result == "")
+                    return "";
+                if(result.Length > current.Length)
+                    result = result.Substring(0, current.Length);
+
+                for (int j = 0; j < result.Length; j++)
+                {
+
+                    if (current[j] != result[j])
+                    {
+                        result = result.Substring(0, j);
+                    }
+                }
+            }
+            return result;
+        }
+
+
+
+
+
+
 
 
 
