@@ -19,41 +19,95 @@ namespace AlgorithmQuestions
             //{
             //    Console.WriteLine(i);
             //}
+
+            //58. Length of Last Word
             //string s = "bu bir algoritma sorusu çözüm videosudur ";
             //Console.WriteLine(LengthOfLastWord(s));
-            string[] s= { "ab", "a"};
-            Console.WriteLine(LongestCommonPrefix(s));
+
+
+            //14. Longest Common Prefix
+            //string[] s= { "fa", "fa", "falight", "faight"  };
+            //Console.WriteLine(LongestCommonPrefix(s));
+
+
+
+            //151.Reverse Words in a String
+            string s = " the sky is blue";
+            Console.WriteLine(ReverseWords(s));
 
         }
 
+        public static string ReverseWords(string s)
+        {
+
+            // "the sky is blue  "
+            string reverse;
+            if (s.Length < 1)
+                return "";
+
+            var list = s.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            Array.Reverse(list);
+         
+            string result =   string.Join(" ", list);
+            return result;
+        }
+
+        public static string ReverseWords2(string s)
+        {
+            // "the sky is blue  "
+            string reverse = "";
+            if (s.Length < 1)
+                return "";
+            for (int i = s.Length-1; i >= 0; i--)
+            {
+                string current = "";
+                while (i >= 0 && s[i] == ' ')
+                {
+                    i--;
+                }
+                while ( i>=0 && s[i] != ' ')
+                {
+                    current = s[i] + current  ;
+                    i--;
+                }
+                if(current.Length > 0)
+                    if(reverse.Length > 0)
+                        reverse = reverse + " " + current;
+                    else
+                        reverse = reverse+ current;
+            }
+            return reverse;
+        }
 
 
 
         //14. Longest Common Prefix
         public static string LongestCommonPrefix(string[] list)
         {
-            // "flaower", "flaow", "flight", "faight"
+            // ["flower","flow","fight", ....]
             string result = list[0];
             string current;
 
             for (int i = 1; i < list.Length; i++)
             {
                 current = list[i];
-                if (current == "" && result == "")
+                if (current == "" || result == "")
                     return "";
-                if(result.Length > current.Length)
+
+                if (result.Length > current.Length)
                     result = result.Substring(0, current.Length);
 
                 for (int j = 0; j < result.Length; j++)
                 {
-
                     if (current[j] != result[j])
                     {
                         result = result.Substring(0, j);
                     }
                 }
+
             }
             return result;
+
         }
 
 
