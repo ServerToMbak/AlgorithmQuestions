@@ -29,35 +29,91 @@ namespace AlgorithmQuestions
             //string[] s= { "fa", "fa", "falight", "faight"  };
             //Console.WriteLine(LongestCommonPrefix(s));
 
+            //88 Merge Sorted Array
+            int[] nums1 = { 1, 2, 3, 0, 0, 0, 0};
+            int[] nums2 = { 2, 5, 6 };
+            int m = 3;
+            int n = 3;
 
+            var resultList = MergeSortedArray(nums1, m, nums2, n);
+
+             foreach(int i in resultList) { Console.Write(i); }
+            
 
             //151.Reverse Words in a String
-            string s = " the sky is blue";
-            Console.WriteLine(ReverseWords(s));
+            //string s = " the sky is blue  ";
+            //Console.WriteLine(ReverseWords2(s));
+
 
         }
 
+        public static int[] MergeSortedArray(int[] nums1, int m, int[] nums2, int n)
+        {
+            //nums1 => { 1, 2[i], 2[i], 5, 6, 7};
+            //nums2 => { 2[j], 5 };
+
+            int i = m - 1;
+            int j = n - 1;
+            int k = m + n - 1;
+            
+            while(i >= 0 && j >=0)
+            {
+                if(nums1[i] > nums2[j])
+                {
+                    nums1[k] = nums1[i];
+                    i--;
+                }
+                else {
+                    nums1[k] = nums2[j];
+                    j--;
+                }
+
+                k--;
+
+            }
+            while (j >= 0)
+            {
+                nums1[k] = nums2[j];
+                k--; j--;
+            }
+            return nums1;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static string ReverseWords(string s)
         {
+            // "The sky is blue "
 
-            // "the sky is blue  "
-            string reverse;
-            if (s.Length < 1)
-                return "";
+            // string --> Join, Array.Reverse(liste), string --> split 
 
-            var list = s.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            Array.Reverse(list);
-         
-            string result =   string.Join(" ", list);
+            var list = s.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+            Array.Reverse(list); // string [] = {blue, is, sky, the
+
+            string result = string.Join(" ",list);
+
             return result;
+
         }
 
         public static string ReverseWords2(string s)
         {
             // "the sky is blue  "
             string reverse = "";
-            if (s.Length < 1)
-                return "";
+
             for (int i = s.Length-1; i >= 0; i--)
             {
                 string current = "";
@@ -67,14 +123,15 @@ namespace AlgorithmQuestions
                 }
                 while ( i>=0 && s[i] != ' ')
                 {
+                    //blue
                     current = s[i] + current  ;
                     i--;
                 }
                 if(current.Length > 0)
-                    if(reverse.Length > 0)
+                    if(reverse.Length > 0) 
                         reverse = reverse + " " + current;
                     else
-                        reverse = reverse+ current;
+                        reverse = reverse+ current; 
             }
             return reverse;
         }
