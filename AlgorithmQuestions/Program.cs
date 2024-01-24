@@ -29,68 +29,189 @@ namespace AlgorithmQuestions
             //string[] s= { "fa", "fa", "falight", "faight"  };
             //Console.WriteLine(LongestCommonPrefix(s));
 
-            //88 Merge Sorted Array
-            int[] nums1 = { 1, 2, 3, 0, 0, 0, 0};
-            int[] nums2 = { 2, 5, 6 };
-            int m = 3;
-            int n = 3;
+            ////88 Merge Sorted Array
+            //int[] nums1 = {0, 0, 0}; // 1, 2, 2, 3, 5, 6
+            //int[] nums2 = {2, 5, 6 };
+            //int m = 0;
+            //int n = 3; 
 
-            var resultList = MergeSortedArray(nums1, m, nums2, n);
+            //var resultList = MergeSortedArray(nums1, m, nums2, n);
 
-             foreach(int i in resultList) { Console.Write(i); }
-            
+            // foreach(int i in resultList) { Console.Write(i); }
+
 
             //151.Reverse Words in a String
             //string s = " the sky is blue  ";
             //Console.WriteLine(ReverseWords2(s));
 
+            //189
+            int[] nums = { 1, 2, 2, 3, 3, 4, 5, 6, 7 };
+            //int k = 3;
+            //Console.WriteLine(RemoveElement(nums,k));
+            //int[] array = new int[5];
+            //string[] stringArray ;
+            //string[] stringArray2 = { "ad" };
+            //stringArray =  new string[5];
 
+            //Console.Write(string.Join(" ", stringArray2[0].ToArray()));
+
+            //Console.WriteLine(RemoveDuplicates(nums));
+
+            string[] renkDizisi = { "yeşil", "yeşil", "kırmızı", "kırmızı", "kırmızı", "kırmızı", "pembe", "mavi", "mavi" };
+            int ciftCorapSayisi = SayiCiftCorap(renkDizisi);
+            Console.WriteLine("Toplam çift çorap sayısı: " + ciftCorapSayisi);
+
+            Console.WriteLine("Hello, World!");
+            string word = "The cat sat on the mat, with another cat s s";
+            Console.WriteLine(KelimeSayısıHesapla(word));
+
+        }
+
+        //Kibele algoritma soruları çözümü
+
+        public static int KelimeSayısıHesapla(string inputString)
+        {
+            int result = 0;
+            int index = 0;
+            //The cat sat on the mat, with another cat
+            while (index < inputString.Length)
+            {
+                if (inputString[index] == ' ' || (index == inputString.Length - 1 && inputString[index] != ' '))
+                {
+                    result++;
+                }
+                index++;
+            }
+
+            return result;
+        }
+        public static int SayiCiftCorap(string[] arr)
+        {
+            Dictionary<string, int> corapSayilari = new Dictionary<string, int>();
+            int ciftCorapSayisi = 0;
+
+            foreach (var renk in arr)
+            {
+                if (corapSayilari.ContainsKey(renk))
+                {
+                    corapSayilari[renk]++;
+                }
+                else
+                {
+                    corapSayilari.Add(renk, 1);
+                }
+            }
+
+            foreach (var sayi in corapSayilari.Values)
+            {
+                if (sayi % 2 == 0)
+                {
+                    ciftCorapSayisi += sayi / 2;
+                }
+                else
+                {
+                    ciftCorapSayisi += (sayi - 1) / 2;
+                }
+
+            }
+
+            return ciftCorapSayisi;
+        }
+
+
+
+
+
+        //26. Remove Duplicates from Sorted Array
+        public static int RemoveDuplicates(int[] nums)
+        {
+            // { 1, 2, 2,3, 3, 4, 5, 6, 7 };
+            int index = 0;
+            for(int i =0; i<nums.Length; i++)
+            {
+                for(int j = i; j<nums.Length; j++)
+                {
+                    if (i != j && nums[i] == nums[j])
+                    {
+                        nums[index] = nums[j];
+                    }
+                    index++;
+                }
+                
+            }
+            return index;
+        }
+
+
+        //LeetCode 27
+        public static int RemoveElement(int[] nums, int val)
+        {
+            int result = 0;
+           
+            for (int i = 0; i<nums.Length; i++)
+            {
+                if (nums[i] != val)
+                {
+                    nums[result] = nums[i];
+                    result++;
+                }
+            }
+         
+            return result;
+        }
+
+        //LeetCode-189
+        public static int[] Rotate(int[] nums, int k)
+        {
+            //nums = 6[b],1,2,3,4,95,
+            int a=0;
+            int b = nums.Length - 1;
+            int[] result = new int[nums.Length];
+            while (k > 0 && b >= 0)
+            {
+                result[a] = nums[b];
+                result = nums.Take<int>(5).ToArray();
+                b--;
+                k--;
+                a++;
+            }
+            return result;
         }
 
         public static int[] MergeSortedArray(int[] nums1, int m, int[] nums2, int n)
         {
-            //nums1 => { 1, 2[i], 2[i], 5, 6, 7};
-            //nums2 => { 2[j], 5 };
+            //LeetCode 88.soru çözümü --> Problemns --> Top Interview 150 --> 88.soru
 
+            //nums1 => {0,0[k],6}; --> 4
+            //nums2 => {4,5[j],};
+ 
             int i = m - 1;
-            int j = n - 1;
-            int k = m + n - 1;
-            
-            while(i >= 0 && j >=0)
+            int j = n - 1; //-->2
+            int k = m + n - 1; 
+
+
+            while (i >= 0 && j >= 0)
             {
-                if(nums1[i] > nums2[j])
+                if (nums1[i] > nums2[j])
                 {
                     nums1[k] = nums1[i];
                     i--;
                 }
-                else {
+                else
+                {
                     nums1[k] = nums2[j];
                     j--;
                 }
-
                 k--;
-
             }
             while (j >= 0)
             {
                 nums1[k] = nums2[j];
-                k--; j--;
+                k--;
+                j--;
             }
             return nums1;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         public static string ReverseWords(string s)
