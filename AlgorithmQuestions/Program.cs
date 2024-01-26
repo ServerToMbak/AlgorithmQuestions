@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -55,36 +55,51 @@ namespace AlgorithmQuestions
 
             //Console.Write(string.Join(" ", stringArray2[0].ToArray()));
 
-            //Console.WriteLine(RemoveDuplicates(nums));
 
-            string[] renkDizisi = { "yeşil", "yeşil", "kırmızı", "kırmızı", "kırmızı", "kırmızı", "pembe", "mavi", "mavi" };
-            int ciftCorapSayisi = SayiCiftCorap(renkDizisi);
-            Console.WriteLine("Toplam çift çorap sayısı: " + ciftCorapSayisi);
 
-            Console.WriteLine("Hello, World!");
-            string word = "The cat sat on the mat, with another cat s s";
-            Console.WriteLine(KelimeSayısıHesapla(word));
+            //string[] renkDizisi = { "yeşil", "yeşil", "kırmızı", "kırmızı", "kırmızı", "kırmızı", "pembe", "mavi", "mavi" };
+            //int ciftCorapSayisi = SayiCiftCorap(renkDizisi);
+            //Console.WriteLine("Toplam çift çorap sayısı: " + ciftCorapSayisi);
+            //string word = "The cat sat on the mat, with another cat s ";
+            //Console.WriteLine(KelimeSayısıHesapla(word));
 
+
+            Console.WriteLine(RemoveDuplicates(nums));
         }
 
-        //Kibele algoritma soruları çözümü
-
+        
         public static int KelimeSayısıHesapla(string inputString)
         {
-            int result = 0;
             int index = 0;
-            //The cat sat on the mat, with another cat
-            while (index < inputString.Length)
+            int result = 0;
+
+            while(index< inputString.Length)
             {
-                if (inputString[index] == ' ' || (index == inputString.Length - 1 && inputString[index] != ' '))
+                // "  The cat sat on the mat, with another cat"
+                if (inputString[index] == ' ')
                 {
+                    index++;
+                }
+                else
+                {
+                    while (index<inputString.Length &&  inputString[index] != ' ')
+                    {
+                        index++;
+                    }
                     result++;
                 }
-                index++;
             }
 
             return result;
+
         }
+
+
+
+
+
+
+
         public static int SayiCiftCorap(string[] arr)
         {
             Dictionary<string, int> corapSayilari = new Dictionary<string, int>();
@@ -117,29 +132,83 @@ namespace AlgorithmQuestions
 
             return ciftCorapSayisi;
         }
+        // LeetCode26. Remove Duplicates from Sorted Array
+        public int RemoveDuplicates1(int[] nums)
+        {
+            int i = 0;
+            int index = 0;
 
+            while (i < nums.Length)
+            {
+                while (i < nums.Count() - 1 && nums[i] == nums[i + 1])
+                {
+                    i++;
+                }
+                nums[index] = nums[i];
+                i++;
+                index++;
+            }
 
+            return index;
+
+        }
+        //LeetCode 80. Remove Duplicates from Sorted Array II
+        public static int RemoveDuplicates2(int[] nums)
+        {
+
+            int i = 0;
+            int index = 0;
+
+            while (i < nums.Length)
+            {
+                int counted = 1;
+                // [1,1,1,2,2,3] // --> [1,1,2,2,3] returns 5
+
+                while ((i < nums.Length - 1) && nums[i] == nums[i + 1])
+                {
+                    counted++;
+                    if (counted <= 2)
+                    {
+                        nums[index] = nums[i];
+                        index++;
+                        i++;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+
+                }
+                nums[index] = nums[i];
+                index++;
+                i++;
+            }
+
+            return index;
+        }
 
 
 
         //26. Remove Duplicates from Sorted Array
         public static int RemoveDuplicates(int[] nums)
         {
-            // { 1, 2, 2,3, 3, 4, 5, 6, 7 };
-            int index = 0;
-            for(int i =0; i<nums.Length; i++)
+            // { 1,1, 2, 2,3, 3, 4, 5, 6, 7 };
+
+            int i = 0;
+            int index=0;
+            while(i < nums.Length)
             {
-                for(int j = i; j<nums.Length; j++)
+                while ( (i<nums.Length-1) && nums[i] == nums[i + 1])
                 {
-                    if (i != j && nums[i] == nums[j])
-                    {
-                        nums[index] = nums[j];
-                    }
-                    index++;
+                    i++;
                 }
-                
+                nums[index] = nums[i];
+                index++;
+                i++;
             }
-            return index;
+           
+
+           return index;    
         }
 
 
