@@ -45,7 +45,7 @@ namespace AlgorithmQuestions
             //Console.WriteLine(ReverseWords2(s));
 
             //189
-            int[] nums = { 1, 2, 2, 3, 3, 4, 5, 6, 7 };
+            //int[] nums = { 1, 2, 2, 3, 3, 4, 5, 6, 7 };
             //int k = 3;
             //Console.WriteLine(RemoveElement(nums,k));
             //int[] array = new int[5];
@@ -64,10 +64,42 @@ namespace AlgorithmQuestions
             //Console.WriteLine(KelimeSayısıHesapla(word));
 
 
-            Console.WriteLine(RemoveDuplicates(nums));
+            //int[] nums = { 2, 2, 1, 1, 1, 2, 2 };
+            ////Console.WriteLine(RemoveDuplicates(nums));
+
+            //Console.WriteLine(MajorityElement(nums));
+
+            //string haystack = "mississippi";
+            //string needle = "issip";
+            //Console.WriteLine(StrStr(haystack, needle));
+
+
+
+            int[] nums = { 1, 2, 3, 4, 5, 6, 7 };
+            int k = 3;
+
+              Rotate(nums,k);
+
         }
 
-        
+        public static int StrStr(string haystack, string needle)
+        {
+            int i = 0;
+            while (i < haystack.Length)
+            {
+                int j = 0;
+                while (j < needle.Length && i < haystack.Length && haystack[i+j] == needle[j])
+                {
+                    if (j == needle.Length - 1)
+                    {
+                        return (i+j)-j;
+                    }
+                    j++;
+                }
+                i++;
+            }
+            return -1;
+        }
         public static int KelimeSayısıHesapla(string inputString)
         {
             int index = 0;
@@ -93,11 +125,6 @@ namespace AlgorithmQuestions
             return result;
 
         }
-
-
-
-
-
 
 
         public static int SayiCiftCorap(string[] arr)
@@ -132,6 +159,41 @@ namespace AlgorithmQuestions
 
             return ciftCorapSayisi;
         }
+
+
+        //169. Majority Element
+        public static int MajorityElement(int[] nums)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            int keep=0;
+            int result=0;
+            // 2,2,1,1,1,2,2
+            for(int i =0; i< nums.Length;i++) 
+            {
+                int keyValue = 1;
+                if (dic.ContainsKey(nums[i]))
+                {
+                    dic[nums[i]]++;
+                }
+                else
+                {
+                    dic.Add(nums[i], keyValue);
+                }
+            }
+
+
+            foreach (var item in dic)
+            {
+                if (keep < item.Value)
+                {
+                    keep = item.Value;
+                    result = item.Key;
+                }
+
+            }
+            return result;
+        }
+
         // LeetCode26. Remove Duplicates from Sorted Array
         public int RemoveDuplicates1(int[] nums)
         {
@@ -232,19 +294,14 @@ namespace AlgorithmQuestions
         //LeetCode-189
         public static int[] Rotate(int[] nums, int k)
         {
-            //nums = 6[b],1,2,3,4,95,
-            int a=0;
-            int b = nums.Length - 1;
-            int[] result = new int[nums.Length];
-            while (k > 0 && b >= 0)
+            int numsdizi[10] = int[10];
+            //nums = 6,1,2,3,4,95, k = 2
+            while (nums.Length - k > 0)
             {
-                result[a] = nums[b];
-                result = nums.Take<int>(5).ToArray();
-                b--;
-                k--;
-                a++;
+                nums.CopyTo(nums, k);
             }
-            return result;
+
+            return nums;
         }
 
         public static int[] MergeSortedArray(int[] nums1, int m, int[] nums2, int n)
